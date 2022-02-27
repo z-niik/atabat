@@ -1,0 +1,75 @@
+/*Template Name: logina*/
+/*Template URI: https://ultrawp.ir/*/
+/*Description: Logina Modern & Responsive Bootstrap 4 Forms is a simple and unique style for Iamge hover built with Bootstrap framework.*/
+/*Author: Ali Niyazi*/
+/*Author URI: https://ultrawp.ir/*/
+/*Version: 1.0*/
+@font-face {
+    font-family: 'ISDNFa';
+    src: url('../fonts/ISDNFa.eot');
+    src: url('../fonts/ISDNFad41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/ISDNFa.woff') format('woff'),
+        url('../fonts/ISDNFa.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISMed';
+    src: url('../fonts/ISMed-Medium.eot');
+    src: url('../fonts/ISMed-Mediumd41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/ISMed-Medium.woff') format('woff'),
+        url('../fonts/ISMed-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISBl';
+    src: url('../fonts/ISBl-Black.eot');
+    src: url('../fonts/ISBl-Blackd41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/ISBl-Black.woff') format('woff'),
+        url('../fonts/ISBl-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISULi';
+    src: url('../fonts/ISULi-UltraLight.eot');
+    src: url('../fonts/ISULi-UltraLightd41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/ISULi-UltraLight.woff') format('woff'),
+        url('../fonts/ISULi-UltraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/IS.eot');
+    src: url('../fonts/ISd41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/IS.woff') format('woff'),
+        url('../fonts/IS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ISBo';
+    src: url('../fonts/ISBo-Bold.eot');
+    src: url('../fonts/ISBo-Boldd41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/ISBo-Bold.woff') format('woff'),
+        url('../fonts/ISBo-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Av';
+    src: url('../fonts/Avtheme.eot');
+    src: url('../fonts/Avthemed41d.eot#iefix') format('embedded-opentype'),
+        url('../fonts/Avtheme.woff') format('woff'),
+        url('../fonts/Avtheme.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

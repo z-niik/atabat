@@ -1,0 +1,147 @@
+/*-------------------------------------
+Template Name: logina
+Template URI: https://ultrawp.ir/
+Description: Logina Modern & Responsive Bootstrap 4 Forms is a simple and unique style for Iamge hover built with Bootstrap framework.
+Author: Ali Niyazi
+Author URI: https://ultrawp.ir/
+Version: 1.0
+---------------------------------------*/
+
+/*---------------------------------------
+    Default CSS
+---------------------------------------*/
+@import "fonts.css";
+* {
+    margin:0;
+    padding:0;
+    direction: rtl;
+}
+h1,h2{
+    font-family: 'Av';
+    text-align: center;
+    font-size: 40px;
+}
+p{
+    font-family: 'IS';
+    text-align: center;
+}
+input[type="date"]{
+    text-align: right;
+}
+.justify-content-end{
+    text-align: center;
+}
+.logina-wrapper a {
+    text-decoration:none
+}
+.logina-wrapper a:hover,
+.logina-wrapper a:focus {
+    text-decoration:none
+}
+.logina-wrapper ul{
+    margin-bottom: 0;
+}
+.logina-wrapper li {
+    list-style:none
+}
+.logina-wrapper h1,
+.logina-wrapper h2,
+.logina-wrapper h3, .logina-wrapper h4, .logina-wrapper h5, .logina-wrapper h6{
+    margin: 10px 0;
+}
+.logina-wrapper p{
+	margin: 0;
+}
+.logina-wrapper input{
+    height: 50px;
+}
+.logina-wrapper input::placeholder{
+    text-transform: capitalize;
+}
+.logina-wrapper select{
+    border: 1px solid #ccc;
+    width: 100%;
+    border-radius: 5px;
+    background: #fff;
+    padding: 10px;
+    height: 50px;
+}
+.logina-wrapper{
+	font-family: 'IS', sans-serif;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #353940;
+    background: #ebebeb;
+    text-transform: capitalize;
+    overflow-x: hidden;
+}
+.logina-wrapper .form-group{
+    position: relative;
+    margin-bottom: 20px;
+}
+.logina-wrapper .form-check-input {
+    margin-top: -0.7rem;
+}
+.logina-area{
+    overflow: hidden;
+}
+.logina-area{
+	padding: 60px 0;
+}
+/*---------------------------------------
+    Start hoverta-hover-bg section css
+---------------------------------------*/
+.logina-header{
+    background: rgb(103,58,183);
+}
+.logina-menu .navbar-brand{
+    display: block;
+    font-family: 'Av';
+    font-size: 25px;
+    color: #fff;
+    text-transform: capitalize;
+    padding: 20px 15px;
+}
+.logina-menu .nav-item .nav-link{
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    padding: 20px 15px;
+}
+/*---------------------------------------
+    End hoverta-hover-bg section css
+---------------------------------------*/
+.logina-area{
+    background: #f4fffe;
+    position: relative;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+/*---------------------------------------
+    Responsive css
+---------------------------------------*/
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-toggler-icon i{
+        padding-top: 5px;
+        color: #fff;
+    }
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+    .navbar-toggler-icon i{
+        padding-top: 5px;
+        color: #fff;
+    }
+    .logina-menu .navbar-brand{
+        padding: 10px 15px;
+    }
+	.logina-menu .nav-item .nav-link{
+        padding: 10px 20px;
+    }
+}

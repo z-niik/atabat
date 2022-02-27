@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+    $this->call(\Baloot\Database\CitiesTableSeeder::class); // سیدر شهر ها و استان ها
     }
 }
