@@ -11,21 +11,18 @@ use Illuminate\Support\Carbon;
 
 class RegisterController extends Controller
 {
-    public function AcceptRules(AcceptRulesRequest $request)
-    {
 
-        $provinces=DB::table('provinces')->get();
-        return view('register' , compact('provinces'));
-    }
     public function RegisterUser(RegisterRequest $request)
     {
+        Carbon::setLocale('fa_IR');
+        $date = Carbon::parse($request->birthday);
         Register::insert([
             'melli_code' => $request->melli_code,
             'phone' => $request->phone,
             'birthday' => $request->birthday,
             'state' => $request->state,
             // 'city' => $request->city,
-            'period' => $request->period,
+            // 'period' => $request->period,
             'created_at' => Carbon::now()
         ]);
     }

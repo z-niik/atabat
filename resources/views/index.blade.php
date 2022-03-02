@@ -5,13 +5,18 @@
 
 <section class="logina-area">
     <div class="container">
+
         <h2>  ثبت نام کاروان زیارتی عتبات عالیات     </h2>
 
+
         <div class="row justify-content-center">
+            <img src="{{ asset('assets/images/hajoziyarat200.png') }}"  href="#" height="148px" width="100px" style="margin: 2 auto;">
+
             <div class="col-lg-8">
                 <div class="form-area contact-form">
                     <div class="form-content rules">
-                        <h2>قوانین و شرایط  </h2>
+                     <h2>قوانین و شرایط  </h2>
+
                         <ul>
                             <li><span>متقاضیان محترم تشرف به عتبات عالیات از تاریخ 06/08/90 لغایت 15/10/90 می توانند</span></li>
                             <li><span>با رعایت موارد مشروحه ذیل و با تکمیل فرم مربوطه در سایت پیش ثبت نام عتبات </span></li>
@@ -33,15 +38,14 @@
                             <li><span>توجه: فقط 15درصد ظرفیت اعزام مختص اعزام های گروهی (گروههای 35 نفره) می باشد، لذا پیشنهاد می شود برای آنکه از امکان بیشتری برای تشرف بهره مند شوید، در گروههای حداکثر تا 7 نفره ثبت نام فرمائید.</span></li>
 
                         </ul>
-
-                        <form method="POST" action="{{ route('register.form') }}">
+                        <form method="get" action="{{ 'register/form' }}">
                             @csrf
                         <div class="col-lg-6">
                             <div class="form-group accept-rules">
                           <input type="checkbox" name="accept-rules"  id="accept-rules">
                           <label>  پذیرفتن شرایط و مقررات </label>
                            </div>
-                           <span class="text-danger">{{ $errors->first('accept-rules')}}</span>
+                           <span class="text-danger"> {{ session('error') }}</span>
                         </div>
                         <div class="col-lg-12">
                             <div class="logina-button">
@@ -50,7 +54,6 @@
                         </div>
 
                         </form>
-
                     </div>
                 </div>
             </div>

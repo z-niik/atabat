@@ -20,7 +20,8 @@
     <!--logina-form css-->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/persian-datepicker.min.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+    integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="logina-wrapper">
 <!--Start logina-header-->
@@ -30,7 +31,8 @@
             <div class="col-lg-12">
                 <div class="logina-menu">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="#"> شرکت توسعه گردشگری باهشت  - ثبت نام عتبات عالیات</a>
+                        <img src="{{ asset('assets/images/logo2400.png') }}"  href="#" height="50px" width="200px">
+                        <a class="navbar-brand" href="#"> شرکت توسعه گردشگری باهشت     </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
@@ -49,6 +51,7 @@
                                 <li class="nav-item"><a class="nav-link" href="search.html">جستجو </a></li>
                             </ul>
                         </div> --}}
+
                     </nav>
                 </div>
             </div>
