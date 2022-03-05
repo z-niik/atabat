@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\sms\test;
 use App\Http\Controllers\PeriodPlaneController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\UserRequestController;
 use Symfony\Component\Routing\Matcher\Dumper\StaticPrefixCollection;
 
 /*
@@ -43,13 +44,17 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 
     Route::post('/login' ,[AdminController::class , 'Login'])->name('login');
     Route::post('/register', [AdminController::class , 'Register'])->name('register');
+
 });
 
 // Route::middleware(['auth','admin'])->group(function () {
 
     Route::get('/panel' , function(){
         return view('admin.index');
-    });
+    })->name('admin.panel');
+
+    Route::get('/userrequest/plan' ,[UserRequestController::class, 'ShowRequest'])->name('userrequest');
+
     Route::get('/period/plan' ,[PeriodPlaneController::class , 'showPeriod'])->name('period.panel');
     Route::post('/add/periodplane' ,[PeriodPlaneController::class , 'AddPeriodPlane'])->name('add.periodplane');
     Route::get('delete/periodplane/{id}' , [PeriodPlaneController::class , 'DeletePeriodPlan']);
@@ -64,8 +69,9 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 
     Route::get('state/list',[StateController::class , 'ViewState'])->name('state.list');
     Route::post('add/state' , [StateController::class , 'AddState'])->name('add.state');
-    Route::get('edit/state/{id}' , StateController::class , 'Edit');
-    Route::post('edit/state/{id}' ,StateController::class , 'EditState');
+    Route::get('edit/state/{id}' , [StateController::class , 'Edit']);
+    Route::post('edit/state/{id}' ,[StateController::class , 'EditState']);
+    Route::get('delete/state/{id}' , [StateController::class , 'DeleteState']);
 
     // });
 
@@ -81,15 +87,9 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 |---------------------------------------------------------
 */
 
-Route::get('register/form' , function(){
-    if(!isset($_GET['accept-rules'])){
-    return Redirect()->back()->with('error','لطفا شرایط و قوانین را مطالعه نموده و تایید نمایید.');
-    }else{
-    $provinces=DB::table('provinces')->select('name')->get();
-    return view('register' , compact('provinces'));
-    }
-});
+Route::get('register/form' ,[RegisterController::class ,'RegisterFrom'])->name('register.form');
 Route::post('register/user' , [RegisterController::class , 'RegisterUser' ])->name('register.user');
+Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->name('confirm.form');
 
 /*
 |---------------------------------------------------------------

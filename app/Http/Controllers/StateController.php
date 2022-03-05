@@ -8,9 +8,7 @@ use Illuminate\Support\Carbon;
 
 class StateController extends Controller
 {
-    function __invoke() {
-        return 'Testing';
-    }
+
     public function ViewState()
     {
         $states=State::latest()->paginate(2);
@@ -20,7 +18,7 @@ class StateController extends Controller
     public function AddState(Request $request)
     {
         $notification=array(
-            'messages' => 'استان مورد نظر ثبت شد.',
+            'message' => 'استان مورد نظر ثبت شد.',
             'alert-type' => 'success'
         );
         State::insert([
@@ -46,5 +44,17 @@ class StateController extends Controller
             'name'=>$request->name,
         ]);
         return Redirect()->route('state.list')->with($notification);
+    }
+    public function DeleteState($id)
+    {
+       $state= State::find($id);
+       $state->Delete();
+        $notification=array(
+            'message'=>' استان '.$state->name . '  حذف شد  ',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+
+
     }
 }

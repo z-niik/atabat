@@ -46,6 +46,6 @@ class Nationalcode implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'کد ملی وارد شده معتبر نیست!';
     }
 }

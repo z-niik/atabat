@@ -37,39 +37,26 @@
                                 <thead>
                                 <tr class="title-row">
                                     <th>#</th>
-                                    <th> پرداخت کننده</th>
-                                    <th>درآمد سایت</th>
-                                    <th>درآمد مدرس</th>
-                                    <th>عنوان محصول</th>
-                                    <th>مبلغ</th>
-                                    <th>تاریخ</th>
-                                    <th>وضعیت</th>
+                                    <th> تلفن </th>
+                                    <th> شماره ملی</th>
+                                    <th>تاریخ تولد </th>
+                                    <th>استان </th>
+                                    <th>تاریخ اعزام</th>
+                                    <th>دوره ی اعزام</th>
                                     <th>عملیات</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <span>02</span>
+                                        <span>--</span>
                                     </td>
-                                    <td>
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <img src="{{ asset('/adminassets/assets/images/xs/avatar2.jpg') }}" data-toggle="tooltip"
-                                                 data-placement="top"
-                                                 title="" alt="Avatar" class="w35 h35 rounded"
-                                                 data-original-title="Avatar Name">
-                                            <div class="ms-3">
-                                                <a href="javascript:void(0);" title="">Zoe Baker</a>
-                                                <p class="mb-0">zoe.baker@example.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>350،000 تومان</td>
-                                    <td>350،000 تومان</td>
-                                    <td>دوره 1</td>
-                                    <td>350،000 تومان</td>
-                                    <td>1401/1/1 11:11</td>
-                                    <td><span class="badge badge-success ml-0 mr-0">تایید شده</span></td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>-- </td>
+                                    <td>--</td>
+                                    <td><span class="badge badge-success ml-0 mr-0">--</span></td>
                                     <td>
                                         <button type="button" class="btn btn-sm btn-default ac-btn-ui"
                                                 data-bs-toggle="tooltip"

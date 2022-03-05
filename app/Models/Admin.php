@@ -55,7 +55,7 @@ class Admin extends Authenticatable
 	/**
 	 * The attributes that are mass assignable.
 	 * @param  $guard The attributes that are mass assignable.
-	 * @return Admin
+	 * @return
 	 */
 	function setGuard($guard): self {
 		$this->guard = $guard;

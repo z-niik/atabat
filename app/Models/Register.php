@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 class Register extends Model
 {
     use HasFactory;
-    protected $fillable = ['melli_code','phone','birthday','state','period'];
+    protected $fillable = ['user_id','state_id','priceplane','periodplane','teammate'];
+
+    public function state()
+    {
+            return $this->belongsTo(State::class, 'state_id');
+
+    }
+    public function user(){
+        return $this->belongsTo(PeriodPlane::class , 'user_id');
+    }
 
 }

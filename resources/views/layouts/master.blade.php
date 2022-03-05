@@ -66,29 +66,27 @@
       }
  </script>
 
-  <script type="text/javascript">
+ <script>
+    $(document).ready(function(){
+        let idx=0;
+        $('#adduser').click(function() {
+            $('#otheruser').append(`<div class="form-group"><input type="text" id="melli_code" name="mellicode[]" required><label>شماره ملی</label> </div><div class="form-group"> <input type="text" class="persianDatapicker"  name="ubirthday[]" id="birthday"><label>تاریخ تولد </label></div>`);
 
-    var counter = 0;
 
-function moreFields() {
-	counter++;
-	var newFields = document.getElementById('readroot').cloneNode(true);
-	newFields.id = '';
-	newFields.style.display = 'block';
-	var newField = newFields.childNodes;
-	for (var i=0;i<newField.length;i++) {
-		var theName = newField[i].name
-		if (theName)
-			newField[i].name = theName + counter;
-	}
-	var insertHere = document.getElementById('writeroot');
-	insertHere.parentNode.insertBefore(newFields,insertHere);
-}
-var element = document.getElementById("writeroot");
-element.onclick = function(event) {
-element.onclick = moreFields;
-}
-  </script>
+        $(".persianDatapicker").pDatepicker({
+            altFormat: "YYYY/MM/DD",
+            observer: true,
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+            initialValueType: 'persian',
+            autoClose: true,
+          });
+          idx++;
+        });
+    });
+</script>
+
+
 </body>
 
 </html>

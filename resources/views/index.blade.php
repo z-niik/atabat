@@ -6,16 +6,29 @@
 <section class="logina-area">
     <div class="container">
 
+
         <h2>  ثبت نام کاروان زیارتی عتبات عالیات     </h2>
 
-
         <div class="row justify-content-center">
-            <img src="{{ asset('assets/images/hajoziyarat200.png') }}"  href="#" height="148px" width="100px" style="margin: 2 auto;">
 
             <div class="col-lg-8">
                 <div class="form-area contact-form">
                     <div class="form-content rules">
-                     <h2>قوانین و شرایط  </h2>
+                        <div class="row">
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <img src="{{ asset('assets/images/hajoziyarat68.png') }}"  href="#" height="100px" width="68px" style="">
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <h2 style="float:right">قوانین و شرایط  </h2>
+
+                                </div>
+                            </div>
+                        </div>
+
 
                         <ul>
                             <li><span>متقاضیان محترم تشرف به عتبات عالیات از تاریخ 06/08/90 لغایت 15/10/90 می توانند</span></li>
@@ -38,7 +51,7 @@
                             <li><span>توجه: فقط 15درصد ظرفیت اعزام مختص اعزام های گروهی (گروههای 35 نفره) می باشد، لذا پیشنهاد می شود برای آنکه از امکان بیشتری برای تشرف بهره مند شوید، در گروههای حداکثر تا 7 نفره ثبت نام فرمائید.</span></li>
 
                         </ul>
-                        <form method="get" action="{{ 'register/form' }}">
+                        <form method="get" action="{{ route('register.form') }}">
                             @csrf
                         <div class="col-lg-6">
                             <div class="form-group accept-rules">

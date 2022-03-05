@@ -10,7 +10,7 @@ class PeriodPlaneController extends Controller
 {
     public function showPeriod()
     {
-        $planes=PeriodPlane::latest()->paginate(2);
+        $planes=PeriodPlane::latest()->paginate(7);
         return view('admin.periodplan.index' , compact('planes'));
     }
     public function AddPeriodPlane(Request $request)

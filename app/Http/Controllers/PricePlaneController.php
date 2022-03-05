@@ -11,7 +11,7 @@ class PricePlaneController extends Controller
 {
     public function showPrice()
     {
-        $planes=PricePlane::latest()->paginate(2);
+        $planes=PricePlane::latest()->paginate(7);
         return view('admin.priceplane.index' , compact('planes'));
     }
     public function AddPricePlane(Request $request)

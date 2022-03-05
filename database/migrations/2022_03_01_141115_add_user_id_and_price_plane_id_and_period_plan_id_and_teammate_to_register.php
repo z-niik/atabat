@@ -19,6 +19,11 @@ class AddUserIdAndPricePlaneIdAndPeriodPlanIdAndTeammateToRegister extends Migra
             $table->mediumInteger('period_plan_id');
             $table->json('teammate');
         });
+        Schema::table('registers', function (Blueprint $table) {
+
+            $table->dropColumn(['mellicode', 'phone' ,'birthday' , 'period' ,'state,']);
+
+        });
     }
 
     /**

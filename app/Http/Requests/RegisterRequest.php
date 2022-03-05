@@ -25,12 +25,12 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'melli_code' => 'required|bail|digits:10',
-            'phone' => 'required|bail|regex:/(09)[0-9]{9}/|digits:11',
-            'birthday' => 'required|date|bail',
-            'state' => 'required|bail|alpha',
-            // 'city' => 'required|bail|alpha',
-            'period' => 'required|bail'
+            'melli_code' => ['required', new Nationalcode],
+            'phone' => 'bail|required|regex:/(09)[0-9]{9}/|digits:11',
+            'birthday' => 'bail|required',
+            'state' => 'bail|required',
+            // 'period' => 'bail|required',
+            // 'price' => 'bail|required'
         ];
     }
 }
