@@ -14,21 +14,21 @@
                     </div>
                     <div class="form-input">
                         <h2> ورود</h2>
-                        <form method="post" action="{{ route('admin.login') }}">
+                        <form method="post" action="{{ route('user.login') }}">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="email" required>
-                                <label>لطفا ایمیل خود را وارد کنید </label>
+                                <input type="text" name="username" required>
+                                <label>نام کاربری( شماره تلفن ثبت شده زمان ثبت نام) </label>
                             </div>
                             <div class="form-group">
                                 <input type="password" name="password" required>
-                                <label>رمز عبور</label>
+                                <label>رمز عبور (شماره ملی)</label>
                             </div>
                             <div class="form-text">
-                                <span>آیا قبلا ثبت نام نکردید؟ <a href="{{ route('admin.register') }}"> ثبت نام کنید</a></span>
+                                <span>آیا قبلا ثبت نام نکردید؟ <a href="{{ url('/') }}"> ثبت نام کنید</a></span>
                             </div>
                             <div class="logina-button">
-                                <button class="logina-btn">ورود</button>
+                                <button type="submit" class="logina-btn">ورود</button>
                             </div>
                         </form>
                     </div>

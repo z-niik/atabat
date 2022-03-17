@@ -3,8 +3,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class AddStatusInRegisters extends Migration
+class AddPriceInConfirms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +15,8 @@ class AddStatusInRegisters extends Migration
      */
     public function up()
     {
-        Schema::table('registers', function (Blueprint $table) {
-            $table->boolean('status')->default(0);
+        Schema::table('confirms', function (Blueprint $table) {
+            $table->string('price')->Nullable();
         });
     }
 
@@ -25,7 +27,7 @@ class AddStatusInRegisters extends Migration
      */
     public function down()
     {
-        Schema::table('registers', function (Blueprint $table) {
+        Schema::table('confirms', function (Blueprint $table) {
             //
         });
     }

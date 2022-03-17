@@ -12,6 +12,12 @@ use App\Models\State;
 use App\Models\PeriodPlane;
 use App\Models\PricePlane;
 use App\Models\User;
+use App\Http\Controllers\SmsController;
+use APP\Models\Sms;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Throwable;
+
 class RegisterController extends Controller
 {
 
@@ -38,39 +44,75 @@ class RegisterController extends Controller
         $periods=$request->period;
         $prices=$request->price;
 
-        $umellicode=$request->mellicode;
-        $userbirthday=$request->ubirthday;
-        foreach($userbirthday as $ubirthday){
-            $ubirthday=$this->ArtoEnNumeric($ubirthday);
-        }
-        if($umellicode && $ubirthday)
+        $teammate=$request->teammate;
+        if($teammate)
         {
-            $teammate=[$umellicode,$ubirthday];
-        }
-        else{
-            $teammate=1;
 
+        $teamcount=count($teammate);
+        for($i=0;$i<$teamcount;$i++)
+             {
+            //  dd($teammate[$i]);
+             if(fmod($i,2)==0)
+                {
+                 $teammate[$i]=$teammate[$i];
+                }else{
+                $teammate[$i]=$this->ArtoEnNumeric($teammate[$i]);
+                 }
+             }
         }
-
-            $user=User::create([
+        $yourstate=State::find($request->state);
+        try{
+        $userdata=([
             'melli_code' => $request->melli_code,
             'phone' => $request->phone,
             'birthdaty' => $date,
-            'created_at' => Carbon::now()
-        ]);
-        $register=Register::create([
-            'user_id'=> $user->id,
             'state_id' => $request->state,
-            'periodplane' => json_encode($periods),
-            'priceplane' => json_encode($prices),
-            'teammate' => json_encode($teammate),
+            'periodplane' => $periods,
+            'priceplane' => $prices,
+            'teammate' => $teammate,
         ]);
-
-        $yourstate=State::find($request->state);
-        return view('confirmform' , compact('user','register','yourstate','prices','periods','ubirthday','umellicode'));
+        return view('confirmform' , compact('userdata','yourstate'));
+    }
+        catch(Throwable $e){
+           return back()->withErrors($e->getMessage());
+     }
 
     }
 
+    public function ReCheckForm($data){
+        return view('recheckform' , compact('data'));
+    }
+    public function StoreUser(Request $requset){
+
+
+        $userdata=json_decode(base64_decode($requset->userdata));
+        // try{
+             $user=User::create([
+                'melli_code' => $userdata->melli_code,
+                'phone' => $userdata->phone,
+                'birthdaty' => $userdata->birthdaty,
+                'password' => bcrypt($userdata->melli_code),
+                'created_at' => Carbon::now(),
+             ]);
+            $register=Register::create([
+                'user_id'=> $user->id,
+                'state_id' => $userdata->state_id,
+                'periodplane' => json_encode($userdata->periodplane),
+                'priceplane' => json_encode($userdata->priceplane),
+                'teammate' => json_encode($userdata->teammate),
+            ]);
+            if($user && $register){
+                $id=$user->id;
+                $phone_number=$user->phone;
+                $sendsms=new SmsController;
+                $sendsms->SendSms( $phone_number, $id);
+                 return view('confirmcode' , compact('phone_number','id'));
+                //return Redirect()->url('confirm/sms/'.$phone_number.'/'.$id);
+            }
+        // }catch(Throwable $e){
+            // return back()->withErrors($e->getMessage());
+        }
+    // }
     public function ConfirmForm()
     {
 

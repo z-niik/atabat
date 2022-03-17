@@ -70,7 +70,7 @@
     $(document).ready(function(){
         let idx=0;
         $('#adduser').click(function() {
-            $('#otheruser').append(`<div class="form-group"><input type="text" id="melli_code" name="mellicode[]" required><label>شماره ملی</label> </div><div class="form-group"> <input type="text" class="persianDatapicker"  name="ubirthday[]" id="birthday"><label>تاریخ تولد </label></div>`);
+            $('#otheruser').append(`<div class="form-group"><input type="text" id="melli_code" name="teammate[]" required><label>شماره ملی</label> </div><div class="form-group"> <input type="text" class="persianDatapicker"  name="teammate[]" id="birthday"><label>تاریخ تولد </label></div>`);
 
 
         $(".persianDatapicker").pDatepicker({

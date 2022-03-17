@@ -10,4 +10,9 @@ class State extends Model
     use HasFactory;
 
     protected $fillable=['name'];
+
+
+    public function registers(){
+        return $this->belongsTo(Register::class , 'state_id');
+    }
 }

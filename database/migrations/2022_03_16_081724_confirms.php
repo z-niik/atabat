@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddConfirmInRegisters extends Migration
+class Confirms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,14 @@ class AddConfirmInRegisters extends Migration
      */
     public function up()
     {
-        Schema::table('registers', function (Blueprint $table) {
+        Schema::create('confirms', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('register_id');
+            $table->string('phone_number',11)->unique();
             $table->boolean('confirm')->default(0);
+            $table->timestamps();
+
+            $table->foreign('register_id')->references('id')->on('registers')->onDelete('cascade');
         });
     }
 
@@ -25,8 +31,6 @@ class AddConfirmInRegisters extends Migration
      */
     public function down()
     {
-        Schema::table('registers', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

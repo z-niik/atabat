@@ -13,11 +13,13 @@ class Register extends Model
 
     public function state()
     {
-            return $this->belongsTo(State::class, 'state_id');
+        return $this->hasOne(State::class, 'id', 'state_id');
 
     }
+
     public function user(){
-        return $this->belongsTo(PeriodPlane::class , 'user_id');
+        return $this->hasOne(User::class , 'id', 'user_id');
     }
+
 
 }

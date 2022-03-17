@@ -37,20 +37,31 @@
                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
                         </button>
-                        {{-- <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                            @guest
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="login.html"> ورود </a></li>
-                                <li class="nav-item"><a class="nav-link" href="register.html"> ثبت نام</a></li>
-                                <li class="nav-item"><a class="nav-link" href="payment.html"> پرداخت </a></li>
-                                <li class="nav-item"><a class="nav-link" href="reset.html"> تعویض پسورد </a></li>
-                                <li class="nav-item"><a class="nav-link" href="review.html"> ارسال نظر</a></li>
-                                <li class="nav-item"><a class="nav-link" href="contact.html"> تماس با ما </a></li>
-                                <li class="nav-item"><a class="nav-link" href="newsletter.html">خبرنامه </a></li>
-                                <li class="nav-item"><a class="nav-link" href="recover.html">فراموشی پسورد </a></li>
-                                <li class="nav-item"><a class="nav-link" href="checkout.html">دریافت اطلاعات </a></li>
-                                <li class="nav-item"><a class="nav-link" href="search.html">جستجو </a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> ورود </a></li>
                             </ul>
-                        </div> --}}
+
+                            @else
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاعات ثبت نام </a></li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> آپلود مدارک </a></li>
+                            </ul>
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاع رسانی </a></li>
+                            </ul>
+                            <form action="{{ route('user.logout') }}" method="POST" class="d-flex">
+                                @csrf
+
+                                <li class="nav-item"><button type="submit" class="nav-link" style="background-color:#165150;border:none;">خروج</button></li>
+                                </form>
+
+
+                            @endguest
+                        </div>
 
                     </nav>
                 </div>

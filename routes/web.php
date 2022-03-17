@@ -1,14 +1,19 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\PricePlaneController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\sms\test;
 use App\Http\Controllers\PeriodPlaneController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\UserRequestController;
+use App\Http\Controllers\VeriedSmsController;
+use App\Models\Document;
 use Symfony\Component\Routing\Matcher\Dumper\StaticPrefixCollection;
 
 /*
@@ -25,6 +30,28 @@ use Symfony\Component\Routing\Matcher\Dumper\StaticPrefixCollection;
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/user/login' , function(){
+    return view('login');
+})->name('user.login');
+Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('user.login');
+Route::get('user/dashboard' , function(){
+    return view('user.index');
+});
+Route::get('/upload' , function(){
+ return view('user.upload');
+});
+Route::post('/upload/doc' , [DocumentController::class , 'StoreDoc'])->name('upload.doc');
+
+/*
+|--------------------------------------------------------
+| User Routes
+|--------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function(){
+    Route::post('/logout',[AuthController::class,'logout'])->name('user.logout');
 });
 
 /*
@@ -44,16 +71,20 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 
     Route::post('/login' ,[AdminController::class , 'Login'])->name('login');
     Route::post('/register', [AdminController::class , 'Register'])->name('register');
+    Route::post('/logout',[AdminController::class,'logout'])->name('logout');
 
 });
 
-// Route::middleware(['auth','admin'])->group(function () {
+ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/panel' , function(){
         return view('admin.index');
     })->name('admin.panel');
 
     Route::get('/userrequest/plan' ,[UserRequestController::class, 'ShowRequest'])->name('userrequest');
+    Route::get('show/info/{id}' , [UserRequestController::class , 'ShowInfo']);
+    Route::get('confirm/info/{id}' , [UserRequestController::class , 'ConfirmInfo']);
+    Route::post('confirm/info' , [UserRequestController::class , 'FinalConfirm'])->name('confirm.info');
 
     Route::get('/period/plan' ,[PeriodPlaneController::class , 'showPeriod'])->name('period.panel');
     Route::post('/add/periodplane' ,[PeriodPlaneController::class , 'AddPeriodPlane'])->name('add.periodplane');
@@ -73,7 +104,7 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
     Route::post('edit/state/{id}' ,[StateController::class , 'EditState']);
     Route::get('delete/state/{id}' , [StateController::class , 'DeleteState']);
 
-    // });
+     });
 
 
 
@@ -83,13 +114,19 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 
 /*
 |---------------------------------------------------------
-|
+|Register Routes
 |---------------------------------------------------------
 */
 
 Route::get('register/form' ,[RegisterController::class ,'RegisterFrom'])->name('register.form');
 Route::post('register/user' , [RegisterController::class , 'RegisterUser' ])->name('register.user');
+Route::get('recheck/form/{data}' , [RegisterController::class , 'ReCheckForm'])->name('recheck.form');
 Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->name('confirm.form');
+Route::post('/store/user' , [RegisterController::class , 'StoreUser'])->name('store.user');
+Route::post('confirm/sms' , [VeriedSmsController::class , 'Verification'])->name('confirm.code');
+Route::get('success/registration' ,function(){
+    return view('successRegistration');
+})->name('success.registration');
 
 /*
 |---------------------------------------------------------------
@@ -97,3 +134,4 @@ Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->na
 |---------------------------------------------------------------
 */
 Route::get('/sms' , [test::class , 'testsend']);
+Route::post('send/sms' ,[SmsController::class , 'SendSms'])->name('send.sms');

@@ -22,7 +22,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
          );
 
-        $password=Hash::make($request->password);
+        $password=bcrypt($request->password);
         Admin::insert([
             'name' => $request->name,
             'email' => $request->email,
@@ -33,13 +33,25 @@ class AdminController extends Controller
 
     }
     public function Login(LoginRequest $request){
-
-        if(Auth::guard('admin')->attempt(['email' => $request->email, 'password' => Hash::make($request->password)])){
+        $credentials=['email' => $request->email, 'password' => $request->password];
+        if(Auth::guard('admin')->attempt($credentials)){
 
             return view('admin.index');
-        }
-        else echo 'sssss';
 
+            }
+            $notification=array(
+                'message' => 'نام کاربری یا رمز اشتباه است',
+                'alert-type' => 'error',
+            );
+             return redirect()->back()->with($notification);
 
+    }
+    public function logout(Request $request)
+    {
+            Auth::guard('admin')->logout();
+            $request->session()->invalidate();
+            return redirect()
+                ->route('admin.login')
+                ->with('success','شما از پنل کاربری خود خارج شدید');
     }
 }

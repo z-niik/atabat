@@ -16,7 +16,7 @@
                         <form method="POST" action="{{ route('register.user') }}">
                             @csrf
                             <div class="form-group">
-                                <input  type="text" id="phone" name="phone">
+                                <input  type="text" id="phone" name="phone" value="{{ $data['phone'] }}">
                                 <label>تلفن همراه</label>
                                 <span class="text-danger">{{ $errors->first('phone')}}</span>
                             </div>
@@ -24,14 +24,14 @@
                             {{--  repeate this fields  --}}
                          <div id="readroot">
                                 <div class="form-group">
-                                    <input type="text" id="melli_code" name="melli_code">
+                                    <input type="text" id="melli_code" name="melli_code" value="{{ $data['melli_code'] }}">
                                     <label>شماره ملی</label>
                                     <span class="text-danger">{{ $errors->first('melli_code')}}</span>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <input type="text" class="persianDatapicker"  name="birthday" id="birthday">
+                                    <input type="text" class="persianDatapicker" value="{{ $data['birthdtay'] }}" name="birthday" id="birthday">
                                     <label>تاریخ تولد </label>
                                     <span class="text-danger">{{ $errors->first('birthday')}}</span>
                                 </div>
@@ -40,9 +40,9 @@
                             <div class="form-group">
 
                                 <select class="form-select" id="state" name="state">
-                                    <option value="">انتخاب استان ...</option>
+                                    <option value="">value="{{ $data['state'] }}</option>
                                     @foreach ($states as $state )
-                                    <option value="{{ $state->id }}">  {{ $state->name }}  </option>
+                                    <option value="{{ $data['state']->id }}">  {{ $data['state']->name }}  </option>
                                     @endforeach
                                 </select>
                                 <span class="text-danger">{{ $errors->first('state')}}</span>
@@ -53,7 +53,7 @@
                             <div class="col-lg-12">
                                 @foreach ($periods as $period )
                                 <div class="form-group accept-rules">
-                                    <input type="checkbox" name="period[]" value="{{ $period->name }}" id="" style="width:5%">
+                                    <input type="checkbox" name="period[]" value="{{ $data['period']->name }}" id="" style="width:5%">
                                     <label style="margin-right: 10%;">{{ $period->name }}</label>
                                   </div>
                                 @endforeach
@@ -66,7 +66,7 @@
                             <div class="col-lg-12">
                                 @foreach ($prices as $price)
                                   <div class="form-group accept-rules">
-                                    <input type="checkbox" name="price[]" value="{{ $price->name }}" style="width:5%" id="">
+                                    <input type="checkbox" name="price[]" value="{{ $data['price']->name }}" style="width:5%" id="">
                                     <label style="margin-right: 10%;">{{ $price->name }} </label>
                                   </div>
                                 @endforeach
@@ -79,7 +79,7 @@
                             <span>برای افزودن مشخصات هم گروهی ها از دکمه بالا استفاده کنید .</span>
 
                             <div class="form-text">
-                                <span>اگر قبلا ثبت نام کردید,برای پیگیری و تکمیل ثبت <a href="{{ route('user.login') }}">وارد شوید</a></span>
+                                <span>اگر قبلا ثبت نام کردید,برای پیگیری و تکمیل ثبت <a href="#">وارد شوید</a></span>
                             </div>
                             <div class="logina-button">
                                 <button type="submit" class="logina-btn">ثبت نام</button>

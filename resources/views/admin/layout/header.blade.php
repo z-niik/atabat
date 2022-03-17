@@ -44,7 +44,7 @@
 </head>
 
 <body>
-
+@if(Illuminate\Support\Facades\Auth::guard('admin'))
     <!--begin::Header-->
     <div class="header-ui d-flex item-center w-100">
         <div class="header__right d-flex flex-grow-1 align-items-center">
@@ -67,45 +67,22 @@
                     <img class="img-fluid" src="{{ asset('/assets/images/logo24001.png') }}" alt="">
                 </div>
                 <div class="dropdown-menu dropdown-menu-start feeds_widget" aria-labelledby="profile-content-ui">
-                    <div class="header blue d-flex align-items-center">
 
-                        <div class="symbol symbol-40px mx-2 py-5">
-                            <img alt="Logo" src="{{ asset('/assets/images/logo24001.png') }}">
-                        </div>
 
-                        <div>
-                            <span class="text-white  fs-5">Admin</span>
-                            <a href="#" class="link-white fs-6 d-block opacity-75 opacity-100-hover">admin@gmail.com</a>
-                        </div>
 
-                    </div>
+                        <form action="{{ route('admin.logout') }}" method="POST" class="d-flex">
+                            @csrf
 
-                    <div class="row row-cols-2 g-0">
-                        <!--begin::Col-->
-                        <a href=""
-                           class="border-bottom border-end text-center py-10 btn btn-text-dark btn-icon-gray-400 btn-active-color-primary rounded-0">
+                            <li class="nav-item"><button type="submit" class="nav-link" style="border:none;">خروج</button></li>
+                            </form>
 
-                            <i class="ri-profile-line ri-2x"></i>
-
-                            <span class="fw-bolder fs-6 d-block pt-3">پروفایل من</span>
-                        </a>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <a href=""
-                           class="col border-bottom text-center py-10 btn btn-text-dark btn-icon-gray-400 btn-active-color-primary rounded-0">
-                            <!--begin::Svg Icon | path: icons/duotone/Interface/Settings-02.svg-->
-                            <i class="ri-settings-4-line ri-2x"></i>
-                            <!--end::Svg Icon-->
-                            <span class="fw-bolder fs-6 d-block pt-3">تنظیمات</span>
-                        </a>
-
-                        <a href=""
+                        {{--  <a href=""
                            class="col text-center py-10 btn btn-text-dark btn-icon-gray-400 btn-active-color-primary rounded-0">
 
                             <i class="ri-logout-box-r-line ri-2x"></i>
 
                             <span class="fw-bolder fs-6 d-block pt-3">خروج</span>
-                        </a>
+                        </a>  --}}
                         <!--end::Col-->
 
                     </div>
@@ -116,5 +93,6 @@
         </div>
     </div>
     <!--end::Header-->
+    @endif
 
 
