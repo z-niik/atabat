@@ -25,19 +25,27 @@
 
                                     </ul>
                                     <br />
+                                    @if($doc)
+                                    <span>شما مدارک زیر را بارگزاری نموده اید</span>
+                                    <div style="display: flex">
+                                    <img src="{{ asset($doc->melli_image) }}" class="img-fluid" style="padding:10px;"/>
+                                    <img src="{{ asset($doc->fish_image) }}" class="img-fluid"  style="padding:10px;"/>
+                                    </div>
+                                    @endif
                                     </div>
                                     <form method="POST" action="{{ route('upload.doc') }}" enctype="multipart/form-data">
+                                      @csrf
                                         <div class="form-group">
-                                            <input type="file" id="melli" name="melli" required>
                                             <label>تصویر کارت ملی</label>
+                                            <input type="file" id="melli" name="melli" style="float:left;" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <input type="file" id="fish" name="fish" required>
                                             <label>تصویر فیش واریزی بانک</label>
+                                            <input type="file" id="fish" name="fish" style="float:left;" required>
                                         </div>
                                         <div class="logina-button">
-                                            <button class="logina-btn">ارسال مدارک </button>
+                                            <button type="submit" class="logina-btn">ارسال مدارک </button>
                                         </div>
                                     </form>
 

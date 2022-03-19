@@ -11,6 +11,7 @@ use App\Http\Controllers\sms\test;
 use App\Http\Controllers\PeriodPlaneController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRequestController;
 use App\Http\Controllers\VeriedSmsController;
 use App\Models\Document;
@@ -36,13 +37,8 @@ Route::get('/user/login' , function(){
     return view('login');
 })->name('user.login');
 Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('user.login');
-Route::get('user/dashboard' , function(){
-    return view('user.index');
-});
-Route::get('/upload' , function(){
- return view('user.upload');
-});
-Route::post('/upload/doc' , [DocumentController::class , 'StoreDoc'])->name('upload.doc');
+
+
 
 /*
 |--------------------------------------------------------
@@ -52,6 +48,9 @@ Route::post('/upload/doc' , [DocumentController::class , 'StoreDoc'])->name('upl
 
 Route::middleware('auth')->group(function(){
     Route::post('/logout',[AuthController::class,'logout'])->name('user.logout');
+    Route::get('/myinfo' ,[UserController::class , 'ShowInfo'] )->name('my.info');
+    Route::get('/upload' , [UserController::class , 'UploadDoc'])->name('user.upload');
+    Route::post('/upload/doc' , [UserController::class , 'StoreDoc'])->name('upload.doc');
 });
 
 /*
@@ -77,14 +76,14 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 
  Route::middleware('auth:admin')->group(function () {
 
-    Route::get('/panel' , function(){
-        return view('admin.index');
-    })->name('admin.panel');
-
+    Route::get('/panel' ,[AdminController::class , 'LoginPanel' ])->name('admin.panel');
     Route::get('/userrequest/plan' ,[UserRequestController::class, 'ShowRequest'])->name('userrequest');
     Route::get('show/info/{id}' , [UserRequestController::class , 'ShowInfo']);
     Route::get('confirm/info/{id}' , [UserRequestController::class , 'ConfirmInfo']);
     Route::post('confirm/info' , [UserRequestController::class , 'FinalConfirm'])->name('confirm.info');
+    Route::get('/list/docs' ,[UserRequestController::class, 'ListDocs'])->name('list.doc');
+    Route::get('delete/userrequest/{id}' , [UserRequestController::class , 'DeleteRequest']);
+
 
     Route::get('/period/plan' ,[PeriodPlaneController::class , 'showPeriod'])->name('period.panel');
     Route::post('/add/periodplane' ,[PeriodPlaneController::class , 'AddPeriodPlane'])->name('add.periodplane');
@@ -118,12 +117,12 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 |---------------------------------------------------------
 */
 
-Route::get('register/form' ,[RegisterController::class ,'RegisterFrom'])->name('register.form');
-Route::post('register/user' , [RegisterController::class , 'RegisterUser' ])->name('register.user');
-Route::get('recheck/form/{data}' , [RegisterController::class , 'ReCheckForm'])->name('recheck.form');
-Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->name('confirm.form');
+Route::get('/register/form' ,[RegisterController::class ,'RegisterFrom'])->name('register.form');
+Route::post('/register/user' , [RegisterController::class , 'RegisterUser' ])->name('register.user');
 Route::post('/store/user' , [RegisterController::class , 'StoreUser'])->name('store.user');
+Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->name('confirm.form');
 Route::post('confirm/sms' , [VeriedSmsController::class , 'Verification'])->name('confirm.code');
+Route::get('recheck/form/{data}' , [RegisterController::class , 'ReCheckForm'])->name('recheck.form');
 Route::get('success/registration' ,function(){
     return view('successRegistration');
 })->name('success.registration');

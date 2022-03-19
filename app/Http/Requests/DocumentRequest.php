@@ -24,8 +24,8 @@ class DocumentRequest extends FormRequest
     public function rules()
     {
         return [
-            'melli_image' => 'required|mimes:png,jpg,jpeg',
-            'fish_image' => 'required|mimes:png,jpg,jpeg'
+            'melli' => 'required|mimes:png,jpg,jpeg',
+            'fish' => 'required|mimes:png,jpg,jpeg'
         ];
     }
 }

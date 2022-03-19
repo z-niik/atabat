@@ -15,7 +15,7 @@ class AddPhoneAndMellicodeAndBirthdayAndStateIdTopUsers extends Migration
     {
         Schema::table('users', function(Blueprint $table){
 
-            $table->string('phone',11)->unique();
+            $table->string('phone',11);
             $table->string('melli_code',10)->unique();
             $table->date('birthdaty');
             $table->integer('state_id');

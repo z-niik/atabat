@@ -10,6 +10,8 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
+use App\Models\Register;
 
 class AdminController extends Controller
 {
@@ -36,7 +38,10 @@ class AdminController extends Controller
         $credentials=['email' => $request->email, 'password' => $request->password];
         if(Auth::guard('admin')->attempt($credentials)){
 
-            return view('admin.index');
+            $users=User::latest()->paginate(3);
+
+            return view('admin.index' , compact('users'));
+
 
             }
             $notification=array(
@@ -53,5 +58,11 @@ class AdminController extends Controller
             return redirect()
                 ->route('admin.login')
                 ->with('success','شما از پنل کاربری خود خارج شدید');
+    }
+    public function LoginPanel(){
+
+        $users=User::latest()->paginate(3);
+
+        return view('admin.index' , compact('users'));
     }
 }

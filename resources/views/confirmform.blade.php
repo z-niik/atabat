@@ -14,7 +14,7 @@
                         <h2>اطلاعات ثبت نام</h2>
                         <form method="POST" action="{{ route('store.user') }}">
                             @csrf
-                            <input type="hidden" name="userdata" value="<?php echo base64_encode(json_encode($userdata)) ?>"/>
+                            <input type="hidden" name="userdata" value="{{ base64_encode(json_encode($userdata))  }} ?>"/>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">

@@ -30,11 +30,7 @@
                     <div class="body">
                         <div class="title__row">
                             <div> لیست ثبت نام کنندگان </div>
-                            <form method="post" action="{{ route('send.sms') }}" >
-                                @csrf
-                            <input type="text" name="mobile_number" >
-                            <input type="submit"/>
-                            </form>
+
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover table-custom spacing5">
@@ -68,24 +64,19 @@
                                         data-bs-placement="top" title="مشاهده اطلاعات کامل"
                                         aria-describedby="tooltip286794"><i class="ri-eye-line"></i>
                                         </a>
-                                      {{--  @if ($confirm->confirm == 1)  --}}
-                                        <button type="button" class="btn btn-sm btn-default ac-btn-ui js-btn-delete"
+
+
+                                        {{--  <button type="button" class="btn btn-sm btn-default ac-btn-ui js-btn-delete"
                                         data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title=" تایید شده"
+                                        data-bs-placement="top" title=" وضعیت تایید "
                                         aria-describedby="tooltip286794"><i class="ri-check-line"></i>
                                          </button>
-                                         {{--  @else  --}}
-                                         <button type="button" class="btn btn-sm btn-default ac-btn-ui js-btn-delete"
-                                        data-bs-toggle="tooltip"
-                                        data-bs-placement="top" title="تایید نشده "
-                                        aria-describedby="tooltip286794"><i class="ri-close-line"></i>
-                                         </button>
-                                         {{--  @endif  --}}
-                                        <button type="button" class="btn btn-sm btn-default ac-btn-ui js-btn-delete"
-                                                data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="حذف"
-                                                aria-describedby="tooltip286794"><i class="ri-delete-bin-line"></i>
-                                        </button>
+                                         --}}
+                                         <a href="{{ url('delete/userrequest/'.$user->id) }}" type="button" class="btn btn-sm btn-default ac-btn-ui "
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="حذف"
+                                            aria-describedby="tooltip286794"><i class="ri-delete-bin-line"></i>
+                                    </a>
                                     </td>
                                 </tr>
                                 @endforeach

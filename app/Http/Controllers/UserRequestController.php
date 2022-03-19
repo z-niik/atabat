@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\State;
 use App\Models\Confirm;
+use App\Models\Document;
 use Exception;
 use Throwable;
 use Illuminate\Support\Carbon;
+use PhpParser\Comment\Doc;
 
 class UserRequestController extends Controller
 {
@@ -44,47 +46,70 @@ class UserRequestController extends Controller
         // $periods=json_decode($registers->periodplane);
         // $teammates=$registers->teammate;
         // dd($teammates);
-        $confirm=Confirm::all();
         // $state = $registers->state->name;
-        return view('admin.userrequest.index' , compact('users' , 'registers','confirm','prices','periods','teammates'));
+        return view('admin.userrequest.index' , compact('users' , 'registers','prices','periods','teammates'));
 
     }
 
     public function ShowInfo($id){
         $user=User::find($id)->first();
         $registers=Register::where('user_id' , $id)->with('state')->first();
+        $confirms=Confirm::where('register_id' , $registers->id)->first();
+        $confirm=($confirms)?($confirms->confirm):0;
         $allarray=json_decode($registers);
         $prices=json_decode($allarray->priceplane);
         $periods=json_decode($allarray->periodplane);
         $teammates=json_decode($allarray->teammate);
         $state=$registers->state->name;
-        return view('admin.userrequest.showinfo' , compact('user','registers','prices','periods','teammates','state'));
+        return view('admin.userrequest.showinfo' , compact('user','id','registers','prices','periods','teammates','state','confirm','confirms'));
     }
 
     public function ConfirmInfo($id){
-
-        $phone=User::find($id)->phone;
+        $user=User::where('id',$id)->first();
+        $phone=$user->phone;
         return view('admin.userrequest.confirminfo' , compact('id','phone'));
     }
 
     public function FinalConfirm(ConfirmInfoRequest $request){
-        try{
-        Confirm::create([
-            'register_id' => $request->id ,
+        $register=Register::where('user_id' , $request->id)->first();
+        //  dd($request->id);
+        // try{
+        Confirm::Create([
+            'register_id' => $register->id ,
             'phone_number' => $request->phone ,
             'confirm' => 1,
             'price' => $request->price,
             'created_at' => Carbon::now(),
         ]);
-
+        $sendsms=new SmsController;
+        $pid='a793vn3mai';
+        $sendsms->SendOkSms( $request->phone,$request->id,$pid);
         $notification=[
             'message' => 'اطلاعات کاربر تایید شد',
             'alert-type' => 'success'
         ];
         return Redirect()->route('userrequest')->with($notification);
-    }catch(Throwable $e){
-            return back()->withErrors($e->getMessage());
-      }
 
+    // }catch(Throwable $e){
+            // return back()->withErrors($e->getMessage());
+    //   }
+
+    }
+
+    public function ListDocs(){
+        $docs=Document::latest()->paginate('10');
+        $melli_code=User::all();
+        return view('admin.userrequest.listdoc' , compact('docs' , 'melli_code'));
+    }
+
+    public function DeleteRequest($id)
+    {
+        $notification=array(
+            'message' => 'حذف با موفقیت انجام شد.',
+            'alert-type' => 'error'
+         );
+
+        $plane=User::find($id)->Delete();
+        return Redirect()->back()->with($notification);
     }
 }

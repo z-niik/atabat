@@ -37,6 +37,7 @@
                         <label >شماره همراه کاربر :</label><span>{{ $phone }}</span>
 
                     </div>
+
                     <div class="form-group">
                         <input type="text" name="price" class="form-control" placeholder="مبلغ واریزی کاربر"
                                required data-parsley-minlength="8">

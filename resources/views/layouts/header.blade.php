@@ -45,10 +45,10 @@
 
                             @else
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاعات ثبت نام </a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('my.info') }}"> اطلاعات ثبت نام </a></li>
                             </ul>
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> آپلود مدارک </a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('user.upload') }}"> آپلود مدارک </a></li>
                             </ul>
                             <ul class="navbar-nav">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاع رسانی </a></li>

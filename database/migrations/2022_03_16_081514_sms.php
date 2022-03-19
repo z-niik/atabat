@@ -16,7 +16,7 @@ class Sms extends Migration
         Schema::create('sms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('phone_number',11)->unique();
+            $table->string('phone_number',11);
             $table->mediumInteger('code');
             $table->timestamps();
 

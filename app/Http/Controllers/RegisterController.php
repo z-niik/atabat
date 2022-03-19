@@ -40,6 +40,7 @@ class RegisterController extends Controller
     public function RegisterUser(RegisterRequest $request)
     {
 
+
         $date=$this->ArtoEnNumeric($request->birthday);
         $periods=$request->period;
         $prices=$request->price;
@@ -60,8 +61,10 @@ class RegisterController extends Controller
                  }
              }
         }
+        // print_r($teammate);
         $yourstate=State::find($request->state);
-        try{
+        // echo $yourstate;
+        // // try{
         $userdata=([
             'melli_code' => $request->melli_code,
             'phone' => $request->phone,
@@ -72,10 +75,10 @@ class RegisterController extends Controller
             'teammate' => $teammate,
         ]);
         return view('confirmform' , compact('userdata','yourstate'));
-    }
-        catch(Throwable $e){
-           return back()->withErrors($e->getMessage());
-     }
+    // // }
+    //     // catch(Throwable $e){
+    //     //    return back()->withErrors($e->getMessage());
+    // //  }
 
     }
 
@@ -86,7 +89,8 @@ class RegisterController extends Controller
 
 
         $userdata=json_decode(base64_decode($requset->userdata));
-        // try{
+
+        //  try{
              $user=User::create([
                 'melli_code' => $userdata->melli_code,
                 'phone' => $userdata->phone,
@@ -104,15 +108,16 @@ class RegisterController extends Controller
             if($user && $register){
                 $id=$user->id;
                 $phone_number=$user->phone;
+                $pid='4gcf6mcttn';
                 $sendsms=new SmsController;
-                $sendsms->SendSms( $phone_number, $id);
+                $sendsms->SendSms( $phone_number, $id,$pid);
                  return view('confirmcode' , compact('phone_number','id'));
-                //return Redirect()->url('confirm/sms/'.$phone_number.'/'.$id);
+        //         // return Redirect()->url('confirm/sms/'.$phone_number.'/'.$id);
             }
-        // }catch(Throwable $e){
-            // return back()->withErrors($e->getMessage());
-        }
-    // }
+        //  }catch(Throwable $e){
+        //      return back()->withErrors($e->getMessage());
+        // }
+     }
     public function ConfirmForm()
     {
 

@@ -7,6 +7,7 @@ use App\Http\Requests\UserLoginRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Register;
 use App\Models\Confirm;
+use Illuminate\Foundation\Auth\User;
 
 class AuthController extends Controller
 {
@@ -16,8 +17,9 @@ class AuthController extends Controller
         // dd($credentials);
         if(Auth::attempt($credentials)){
             $id=auth()->user()->id;
-            $register=Register::where('user_id' , $id)->first();
-            $confirm=Confirm::select('confirm')->where('register_id',$register->id);
+            $register_id=User::find($id)->id;
+            $confirm=Confirm::where('register_id', $register_id)->first();
+            $confirm=($confirm)?($confirm->confirm):0;
             return view('user.index' , compact('confirm'));
             }
             $notification=array(

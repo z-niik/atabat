@@ -1,37 +1,16 @@
-@extends('admin.layout/master')
+@extends('layouts.master')
+
+
 
 @section('content')
 
 
-<div class="content">
-
-
-    <!--begin::Main Content-->
-    <div class="main-content">
-        <div class="row">
-            <div class="col-12">
-                <div class="toolbar-ui">
-                    <h1 class="text-dark fs-5 fw-bold">داشبورد</h1>
-                    <ul class="breadcrumb-ui ps-0">
-                        <li><a href="index.html" title="پیشخوان">لیست ثبت نامی ها</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="row clearfix">
-
-
-        </div>
-
-
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12">
-                <div class="card">
-                    <div class="body">
-                        <div class="title__row">
-                            <div> اطلاعات ثبت نام </div>
-
-                        </div>
+<section class="logina-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-area form-content">
+                    <div class="form-input rules">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group" style="padding: 15px;">
@@ -74,7 +53,7 @@
 
                         </div>
                         @if($teammates ==Null)
-                        <span style="color:#444">شما اطلاعات هیچ همسفری را ثبت نکرده اید  </span><br/>
+                        <span style="color:#444">شما اطلاعات هیچ همسفری را ثبت نکرده اید  </span>
                         @else
 
                             @php
@@ -105,25 +84,11 @@
                             @endphp
                         @endfor
                         @endif
-
-                        @if($confirm==1)
-                        <div class="row" dir="rtl">
-                        <span class="alert alert-info" > <b> اطلاعات کاربر تایید شده است...</b><span>مبلغ واریزی کاربر  :   </span><span><b>   {{ $confirms->price }}  </b>تومان</span></span>
-
-                        <div class="row">
-                      @else
-                        <a type="button" href="{{ url('confirm/info/'.$id) }}" class="btn btn-primary-ui">تایید اطلاعات</a>
-                     @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    <!--end::Main Content-->
-
-</div>
+</section><!--End logina-area-->
 
 @endsection

@@ -11,6 +11,7 @@
         <li class="item-li i-users has-sub-ui"><a class="has-arrow-ui" href="#">درخواست های ثبت نام</a>
             <ul class="collapse show">
                 <li><a href="{{ route('userrequest') }}">لیست درخواست ها</a></li>
+                <li><a href="{{ route('list.doc') }}"> مدارک</a></li>
             </ul>
         </li>
         <li class="item-li i-categories"><a href="{{ Route('period.panel') }}">دوره های اعزام</a></li>
