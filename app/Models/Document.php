@@ -9,5 +9,5 @@ class Document extends Model
 {
     use HasFactory;
 
-    protected $fillable=['user_id','melli_image','fish_image'];
+    protected $fillable=['user_id','melli_image','fish_image','gozarname1','gozarname2'];
 }

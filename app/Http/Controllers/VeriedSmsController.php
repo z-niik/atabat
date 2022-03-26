@@ -8,8 +8,8 @@ use App\Models\Sms;
 class VeriedSmsController extends Controller
 {
     public function Verification(Request $request){
-        // dd($request->code);
-        $verify=Sms::where('user_id' , $request->id)->first();
+        // dd($request->id);
+        $verify=Sms::where('user_id' , $request->id)->latest()->first();
         // dd($verify->code==$request->code);
         if($verify->code==$request->code)
         {

@@ -16,7 +16,7 @@ class Confirms extends Migration
         Schema::create('confirms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('register_id');
-            $table->string('phone_number',11)->unique();
+            $table->string('phone_number',11);
             $table->boolean('confirm')->default(0);
             $table->timestamps();
 

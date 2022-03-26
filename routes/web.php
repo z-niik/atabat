@@ -36,7 +36,7 @@ Route::get('/', function () {
 Route::get('/user/login' , function(){
     return view('login');
 })->name('user.login');
-Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('user.login');
+Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('userlogin');
 
 
 
@@ -47,6 +47,7 @@ Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('user.l
 */
 
 Route::middleware('auth')->group(function(){
+    Route::get('/dashboard' , [AuthController::class , 'Dashboard'])->name('dashboard');
     Route::post('/logout',[AuthController::class,'logout'])->name('user.logout');
     Route::get('/myinfo' ,[UserController::class , 'ShowInfo'] )->name('my.info');
     Route::get('/upload' , [UserController::class , 'UploadDoc'])->name('user.upload');

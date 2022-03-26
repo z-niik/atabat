@@ -31,6 +31,14 @@ class AuthController extends Controller
 
     }
 
+    public function Dashboard(){
+        $id=auth()->user()->id;
+        $register_id=User::find($id)->id;
+        $confirm=Confirm::where('register_id', $register_id)->first();
+        $confirm=($confirm)?($confirm->confirm):0;
+        return view('user.index' , compact('confirm'));
+    }
+
     public function logout(Request $request)
     {
             auth()->logout();

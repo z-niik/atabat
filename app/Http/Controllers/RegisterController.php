@@ -90,14 +90,38 @@ class RegisterController extends Controller
 
         $userdata=json_decode(base64_decode($requset->userdata));
 
+        $repeat_user=User::where('melli_code',$userdata->melli_code);
+
+        if($repeat_user){
+
+            $user=User::where('melli_code',$userdata->melli_code)->update([
+                'melli_code' => $userdata->melli_code,
+                'phone' => $userdata->phone,
+                'birthdaty' => $userdata->birthdaty,
+                'password' => bcrypt($userdata->melli_code),
+             ]);
+            $userid=User::where('melli_code',$userdata->melli_code)->first();
+            $user_id=$userid->id;
+            $phone=$userid->phone;
+            $register=Register::where('user_id',$user_id)->update([
+                'user_id'=> $user_id,
+                'state_id' => $userdata->state_id,
+                'periodplane' => json_encode($userdata->periodplane),
+                'priceplane' => json_encode($userdata->priceplane),
+                'teammate' => json_encode($userdata->teammate),
+            ]);
+
+        }else{
         //  try{
-             $user=User::create([
+            $user=User::create([
                 'melli_code' => $userdata->melli_code,
                 'phone' => $userdata->phone,
                 'birthdaty' => $userdata->birthdaty,
                 'password' => bcrypt($userdata->melli_code),
                 'created_at' => Carbon::now(),
              ]);
+             $user_id=$user->id;
+             $phone=$user->phone;
             $register=Register::create([
                 'user_id'=> $user->id,
                 'state_id' => $userdata->state_id,
@@ -105,15 +129,17 @@ class RegisterController extends Controller
                 'priceplane' => json_encode($userdata->priceplane),
                 'teammate' => json_encode($userdata->teammate),
             ]);
+        }
             if($user && $register){
-                $id=$user->id;
-                $phone_number=$user->phone;
+                $id=$user_id;
+                $phone_number=$phone;
                 $pid='4gcf6mcttn';
                 $sendsms=new SmsController;
                 $sendsms->SendSms( $phone_number, $id,$pid);
                  return view('confirmcode' , compact('phone_number','id'));
         //         // return Redirect()->url('confirm/sms/'.$phone_number.'/'.$id);
             }
+
         //  }catch(Throwable $e){
         //      return back()->withErrors($e->getMessage());
         // }

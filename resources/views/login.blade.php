@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-input">
                         <h2> ورود</h2>
-                        <form method="post" action="{{ route('user.login') }}">
+                        <form method="post" action="{{ route('userlogin') }}">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="username" required>

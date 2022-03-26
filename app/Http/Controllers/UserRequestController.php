@@ -52,7 +52,9 @@ class UserRequestController extends Controller
     }
 
     public function ShowInfo($id){
-        $user=User::find($id)->first();
+        // dd($id);
+        $user=User::where('id',$id)->first();
+        // dd($user);
         $registers=Register::where('user_id' , $id)->with('state')->first();
         $confirms=Confirm::where('register_id' , $registers->id)->first();
         $confirm=($confirms)?($confirms->confirm):0;
@@ -72,7 +74,7 @@ class UserRequestController extends Controller
 
     public function FinalConfirm(ConfirmInfoRequest $request){
         $register=Register::where('user_id' , $request->id)->first();
-        //  dd($request->id);
+        // ($request->id);
         // try{
         Confirm::Create([
             'register_id' => $register->id ,

@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
     <!--page-style css-->
     <link rel="stylesheet" href="{{ asset('assets/css/page-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/logina-form.css') }}">
+
     <!--logina-form css-->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/persian-datepicker.min.css') }}">
@@ -45,20 +47,16 @@
 
                             @else
                             <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}"> پیشخوان   </a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('my.info') }}"> اطلاعات ثبت نام </a></li>
-                            </ul>
-                            <ul class="navbar-nav">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('user.upload') }}"> آپلود مدارک </a></li>
-                            </ul>
-                            <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاع رسانی </a></li>
-                            </ul>
-                            <form action="{{ route('user.logout') }}" method="POST" class="d-flex">
-                                @csrf
+                                 <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}"> اطلاع رسانی </a></li>
 
+                                   <form action="{{ route('user.logout') }}" method="POST" class="d-flex">
+                                @csrf
                                 <li class="nav-item"><button type="submit" class="nav-link" style="background-color:#165150;border:none;">خروج</button></li>
                                 </form>
-
+                            </ul>
 
                             @endguest
                         </div>

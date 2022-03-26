@@ -8,12 +8,15 @@
 @yield('content')
 
 <!-- jquery  -->
-<!-- Bootstrap js  -->
-{{-- <script src="{{ asset('assets/css/bootstrap/js/bootstrap.min.js') }}"></script> --}}
+{{--  <script src="{{ asset('assets/js/jquery-1.12.4.min.js') }}"></script>  --}}
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+<!-- Bootstrap js  -->
+<script src="{{ asset('assets/css/bootstrap/js/bootstrap.min.js') }}"></script>
+
+
 <script src="{{ asset('assets/js/persian-date.min.js') }}"></script>
-{{--  <script src="{{ asset('assets/js/addrow.js') }}"></script>  --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
+<script src="{{ asset('assets/js/addrow.js') }}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>  --}}
 
     <script>
       @if(Session::has('message'))
@@ -42,7 +45,7 @@
 
     </script>
 
-<script src="{{ asset('assets/js/persian-datepicker.min.js') }}"></script>
+  <script src="{{ asset('assets/js/persian-datepicker.min.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
       $(".persianDatapicker").pDatepicker({
@@ -66,7 +69,7 @@
       }
  </script>
 
- <script>
+   <script>
     $(document).ready(function(){
         let idx=0;
         $('#adduser').click(function() {

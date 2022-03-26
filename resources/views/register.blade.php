@@ -48,7 +48,7 @@
                                 <span class="text-danger">{{ $errors->first('state')}}</span>
                             </div>
 
-                            <label>تاریخ اعزام (یک یا چند مورد از تاریخ های زیر را که تمایل به اعزام در آن تاریخ را دارید انتخاب نمایید)</label>
+                            <label>تاریخ اعزام (انتخاب یک یا چند گزینه امکان پذیر است)</label>
 
                             <div class="col-lg-12">
                                 @foreach ($periods as $period )
@@ -61,7 +61,7 @@
 
                             </div>
 
-                            <label>پلن قیمت (یک یا چند مورد از پلن های زیر را که تمایل دارید  انتخاب نمایید)</label>
+                            <label>نوع و هزینه سفر (انتخاب یک یا چند گزینه امکان پذیر است)</label>
 
                             <div class="col-lg-12">
                                 @foreach ($prices as $price)
@@ -74,7 +74,7 @@
                              </div>
 
 
-                            <a class="btn" id="adduser" style="color:#fff;background-color:#165150;">افزودن هم گروهی</a>
+                            <a class="btn" id="adduser" style="color:#fff;background-color:#165150;">ثبت نام نفر بعدی</a>
                             <div id="otheruser"></div>
                             <span>برای افزودن مشخصات هم گروهی ها از دکمه بالا استفاده کنید .</span>
 
