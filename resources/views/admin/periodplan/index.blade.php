@@ -37,6 +37,10 @@
                                <span style="color:#7c7d7d;margin-right:5%;"> نمونه : هفته ی اول فروردین ماه  </span>
                     </div>
                     <div class="form-group">
+                    <textarea class="form-control" placeholder="توضیحات" id="description" name="description" rows="2" cols="30" required=""></textarea>
+                    </div>
+
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary-ui">افزودن</button>
                     </div>
                 </form>
@@ -57,6 +61,7 @@
                                 <tr class="title-row">
                                     <th>#</th>
                                     <th>  عنوان </th>
+                                    <th>  شرح </th>
                                     <th>تاریخ ثبت</th>
                                     <th>عملیات</th>
                                 </tr>
@@ -70,6 +75,7 @@
                                         </td>
 
                                         <td>{{ $plane->name }}</td>
+                                        <td>{{ $plane->description }}</td>
                                         <td>{{  Carbon\Carbon::parse($plane->created_at)->diffForHumans()  }}</td>
                                         <td>
                                             <a href="{{ url('edit/periodplane/'.$plane->id) }}" type="button" class="btn btn-sm btn-default ac-btn-ui"
@@ -87,7 +93,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                {{ $planes->links() }}
+                                {{ $planes->links('admin.layout.paginate') }}
                         </div>
                     </div>
                 </div>

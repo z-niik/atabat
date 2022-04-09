@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropUniqueMelliCodeFromUsers extends Migration
+class AddTourIdInRegisters extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class DropUniqueMelliCodeFromUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropUnique('users_melli_code_unique');
+        Schema::table('registers', function (Blueprint $table) {
+            $table->unsignedBigInteger('tour_id');
         });
     }
 
@@ -25,7 +25,7 @@ class DropUniqueMelliCodeFromUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('registers', function (Blueprint $table) {
             //
         });
     }

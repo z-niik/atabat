@@ -17,6 +17,7 @@ use APP\Models\Sms;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Throwable;
+use App\Models\Tour;
 
 class RegisterController extends Controller
 {
@@ -25,25 +26,22 @@ class RegisterController extends Controller
         return strtr($string, array('۰'=>'0', '۱'=>'1', '۲'=>'2', '۳'=>'3', '۴'=>'4', '۵'=>'5', '۶'=>'6', '۷'=>'7', '۸'=>'8', '۹'=>'9', '٠'=>'0', '١'=>'1', '٢'=>'2', '٣'=>'3', '٤'=>'4', '٥'=>'5', '٦'=>'6', '٧'=>'7', '٨'=>'8', '٩'=>'9'));
     }
 
-    public function RegisterFrom()
+    public function RegisterFrom($id)
     {
-            if(!isset($_GET['accept-rules'])){
-            return Redirect()->back()->with('error','لطفا شرایط و قوانین را مطالعه نموده و تایید نمایید.');
-            }else{
-            $periods=PeriodPlane::all();
-            $prices=PricePlane::all();
-            $states=State::all();
-            return view('register' , compact('periods','states','prices'));
-            }
+            $tour=Tour::where('id' , $id)->first();
+            // $periods=PeriodPlane::all();
+            // $prices=PricePlane::all();
+            // $states=State::all();
+            return view('register' , compact('tour'));
+
     }
 
     public function RegisterUser(RegisterRequest $request)
     {
 
-
         $date=$this->ArtoEnNumeric($request->birthday);
-        $periods=$request->period;
-        $prices=$request->price;
+        // $periods=$request->period;
+        // $prices=$request->price;
 
         $teammate=$request->teammate;
         if($teammate)
@@ -62,19 +60,18 @@ class RegisterController extends Controller
              }
         }
         // print_r($teammate);
-        $yourstate=State::find($request->state);
+        // $yourstate=State::find($request->state);
         // echo $yourstate;
         // // try{
         $userdata=([
             'melli_code' => $request->melli_code,
             'phone' => $request->phone,
             'birthdaty' => $date,
-            'state_id' => $request->state,
-            'periodplane' => $periods,
-            'priceplane' => $prices,
             'teammate' => $teammate,
+            'tour_id' => $request->tour_id,
         ]);
-        return view('confirmform' , compact('userdata','yourstate'));
+        $tour=Tour::where('id', $request->tour_id)->first();
+        return view('confirmform' , compact('userdata','tour'));
     // // }
     //     // catch(Throwable $e){
     //     //    return back()->withErrors($e->getMessage());
@@ -82,17 +79,25 @@ class RegisterController extends Controller
 
     }
 
-    public function ReCheckForm($data){
-        return view('recheckform' , compact('data'));
+
+
+    public function ReCheckForm($data , $id){
+        $data=json_decode(base64_decode($data));
+        // $userstate=state::find($data->state_id);
+        // $states=State::all();
+        $tour=Tour::where('id' , $id)->first();
+        return view('recheckform' , compact('data','tour'));
     }
+
+
     public function StoreUser(Request $requset){
 
 
         $userdata=json_decode(base64_decode($requset->userdata));
 
         $repeat_user=User::where('melli_code',$userdata->melli_code);
-
-        if($repeat_user){
+        // dd($repeat_user);
+        if($repeat_user ==Null){
 
             $user=User::where('melli_code',$userdata->melli_code)->update([
                 'melli_code' => $userdata->melli_code,
@@ -103,12 +108,11 @@ class RegisterController extends Controller
             $userid=User::where('melli_code',$userdata->melli_code)->first();
             $user_id=$userid->id;
             $phone=$userid->phone;
+            $mellicode=$userid->melli_code;
             $register=Register::where('user_id',$user_id)->update([
                 'user_id'=> $user_id,
-                'state_id' => $userdata->state_id,
-                'periodplane' => json_encode($userdata->periodplane),
-                'priceplane' => json_encode($userdata->priceplane),
                 'teammate' => json_encode($userdata->teammate),
+                'tour_id' => $requset->tour_id,
             ]);
 
         }else{
@@ -122,20 +126,23 @@ class RegisterController extends Controller
              ]);
              $user_id=$user->id;
              $phone=$user->phone;
+             $mellicode=$user->melli_code;
             $register=Register::create([
                 'user_id'=> $user->id,
-                'state_id' => $userdata->state_id,
-                'periodplane' => json_encode($userdata->periodplane),
-                'priceplane' => json_encode($userdata->priceplane),
                 'teammate' => json_encode($userdata->teammate),
+                'tour_id' => $requset->tour_id,
             ]);
         }
             if($user && $register){
                 $id=$user_id;
                 $phone_number=$phone;
-                $pid='4gcf6mcttn';
+                $pid='5gfzx1bpi2';
                 $sendsms=new SmsController;
                 $sendsms->SendSms( $phone_number, $id,$pid);
+
+                // $pid2='yn8s4spa2n';
+                // $sendadminsms=new SmsController;
+                // $sendadminsms->SendAdminSms( $mellicode, $id,$pid2);
                  return view('confirmcode' , compact('phone_number','id'));
         //         // return Redirect()->url('confirm/sms/'.$phone_number.'/'.$id);
             }

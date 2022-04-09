@@ -11,6 +11,7 @@ use App\Http\Controllers\sms\test;
 use App\Http\Controllers\PeriodPlaneController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\TourController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRequestController;
 use App\Http\Controllers\VeriedSmsController;
@@ -37,6 +38,7 @@ Route::get('/user/login' , function(){
     return view('login');
 })->name('user.login');
 Route::post('/user/login' ,[AuthController::class , 'LoginUser' ])->name('userlogin');
+
 
 
 
@@ -117,13 +119,18 @@ Route::prefix('admin')->middleware('admin')->as('admin.')->group(function(){
 |Register Routes
 |---------------------------------------------------------
 */
+Route::get('/register/tour' , [TourController::class , 'ViewTours'])->name('list.tour');
+Route::get('/detail/tour/{id}' ,[TourController::class , 'ViewDetails']);
+Route::get('/register/form/{id}' ,[RegisterController::class ,'RegisterFrom']);
+Route::get('/list/tour/' , [TourController::class , 'ListTour'])->name('all.tour');
+
 
 Route::get('/register/form' ,[RegisterController::class ,'RegisterFrom'])->name('register.form');
 Route::post('/register/user' , [RegisterController::class , 'RegisterUser' ])->name('register.user');
 Route::post('/store/user' , [RegisterController::class , 'StoreUser'])->name('store.user');
 Route::get('/register/confirm' ,[RegisterController::class , 'ConfirmForm'])->name('confirm.form');
 Route::post('confirm/sms' , [VeriedSmsController::class , 'Verification'])->name('confirm.code');
-Route::get('recheck/form/{data}' , [RegisterController::class , 'ReCheckForm'])->name('recheck.form');
+Route::get('recheck/form/{data}/{id}' , [RegisterController::class , 'ReCheckForm']);
 Route::get('success/registration' ,function(){
     return view('successRegistration');
 })->name('success.registration');

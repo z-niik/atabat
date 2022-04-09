@@ -21,12 +21,7 @@
                                     <img src="{{ asset('assets/images/hajoziyarat68.png') }}"  href="#" height="100px" width="68px" style="">
                                 </div>
                             </div>
-                            <div class="col-lg-8">
-                                <div class="form-group">
-                                    <h2 style="float:right">قوانین و شرایط  </h2>
 
-                                </div>
-                            </div>
                         </div>
 
 
@@ -42,7 +37,7 @@
 
                         </ul>
 
-                        <form method="get" action="{{ route('register.form') }}">
+                        <form method="get" action="{{ route('list.tour') }}">
                             @csrf
                         <div class="col-lg-6">
                             <div class="form-group accept-rules">
@@ -51,9 +46,16 @@
                            </div>
                            <span class="text-danger"> {{ session('error') }}</span>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" style="display: flex;">
+                            <div class="col-lg-6">
                             <div class="logina-button">
-                                <button type="submit" class="logina-btn">مرحله ی بعدی</button>
+                                <a class="logina-btn btn" type="button" href="{{ route('user.login') }}" >ورود</a>
+                            </div>
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="logina-button">
+                                <button type="submit" class="logina-btn"> ثبت نام </button>
+                            </div>
                             </div>
                         </div>
 

@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'melli_code' => ['required', new Nationalcode],
             'phone' => 'bail|required|regex:/(09)[0-9]{9}/|digits:11',
             'birthday' => 'bail|required',
-            'state' => 'bail|required',
+            // 'state' => 'bail|required',
             // 'period' => 'bail|required',
             // 'price' => 'bail|required'
         ];

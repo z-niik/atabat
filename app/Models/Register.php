@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Register extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','state_id','priceplane','periodplane','teammate'];
+    protected $fillable = ['user_id','teammate','tour_id'];
 
     public function state()
     {

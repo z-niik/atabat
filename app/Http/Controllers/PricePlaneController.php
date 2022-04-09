@@ -22,6 +22,7 @@ class PricePlaneController extends Controller
          );
         PricePlane::insert([
             'name' => $request->name,
+            'description' => $request->description,
             'created_at' => Carbon::now()
         ]);
      Return Redirect()->back()->with($notification);
@@ -53,6 +54,7 @@ class PricePlaneController extends Controller
 
         PricePlane::find($id)->update([
             'name' => $request->name,
+            'description' => $request->description,
         ]);
         return Redirect()->route('price.panel')->with($notification);
     }

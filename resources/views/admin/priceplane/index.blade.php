@@ -37,6 +37,9 @@
                                <span style="color:#7c7d7d;margin-right:5%;"> نمونه : سفر دو سر هوایی قیمت 9 تا 10 میلیون تومان</span>
                     </div>
                     <div class="form-group">
+                        <textarea class="form-control" placeholder="توضیحات" id="description" name="description" rows="2" cols="30" required=""></textarea>
+                        </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary-ui">افزودن</button>
                     </div>
                 </form>
@@ -57,6 +60,7 @@
                                 <tr class="title-row">
                                     <th>#</th>
                                     <th>  طرح </th>
+                                    <th>  شرح </th>
                                     <th>تاریخ ثبت</th>
                                     <th>عملیات</th>
                                 </tr>
@@ -69,6 +73,7 @@
                                     </td>
 
                                     <td>{{ $plane->name }}</td>
+                                    <td>{{ $plane->description }}</td>
                                     <td>{{  Carbon\Carbon::parse($plane->created_at)->diffForHumans()  }}</td>
                                     <td>
                                         <a href="{{ url('edit/priceplane/'.$plane->id) }}" type="button" class="btn btn-sm btn-default ac-btn-ui"

@@ -21,7 +21,7 @@
 
                         <div><span>نام کاربری : <strong>شماره همراه</strong> </span></div>
                         <div><span>و رمز عبور : <strong>شماره ملی</strong> </span></div>
-                        <div><span>وارد پروفایل خود شده و بقیه مراحل ثبت نام را طی کنید. </span></div>
+                        <div><span>وارد <a href="{{ route('user.login') }}" ><b style="color:#ec2519;">پروفایل</b></a> خود شده و بقیه مراحل ثبت نام را طی کنید. </span></div>
 
                       </div>
 

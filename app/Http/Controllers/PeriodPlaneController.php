@@ -21,6 +21,7 @@ class PeriodPlaneController extends Controller
          );
          PeriodPlane::insert([
             'name' => $request->name,
+            'description' => $request->description,
             'created_at' => Carbon::now()
         ]);
      Return Redirect()->back()->with($notification);
@@ -52,6 +53,7 @@ class PeriodPlaneController extends Controller
 
         PeriodPlane::find($id)->update([
             'name' => $request->name,
+            'description' => $request->description,
         ]);
         return Redirect()->route('period.panel')->with($notification);
     }

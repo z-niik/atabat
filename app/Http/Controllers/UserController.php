@@ -27,8 +27,20 @@ class UserController extends Controller
     }
     public function UploadDoc(){
         $id=Auth::user()->id;
+        $userregister=Register::where('user_id','$id')->first();
+        $teammate=$userregister->teammate;
+        if($teammate){
+            $team=1;
+            $team_num=count($teammate);
+            dd($team_num);
+        }
+        else{
+            $team=0;
+        }
+
+
         $doc=Document::where('user_id' , $id)->first();
-        return view('user.upload', compact('doc'));
+        return view('user.upload', compact('doc',));
     }
 
     public function StoreDoc(DocumentRequest $request){
